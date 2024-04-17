@@ -2,18 +2,14 @@ package SZP.controller;
 
 import SZP.model.TitleModel;
 import SZP.service.TitleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/title")
+@RequiredArgsConstructor
 public class TitleController {
-    @Autowired
     private final TitleService tileService;
-
-    public TitleController(TitleService tileService) {
-        this.tileService = tileService;
-    }
 
     @PutMapping("/create")
     public void createTile() {
