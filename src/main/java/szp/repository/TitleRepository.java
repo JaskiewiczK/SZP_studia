@@ -1,6 +1,6 @@
-package SZP.repository;
+package szp.repository;
 
-import SZP.model.TitleModel;
+import szp.model.TitleModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

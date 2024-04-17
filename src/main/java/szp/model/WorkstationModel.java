@@ -1,4 +1,4 @@
-package SZP.model;
+package szp.model;
 
 import jakarta.persistence.*;
 import lombok.Data;

@@ -1,6 +1,6 @@
-package SZP.repository;
+package szp.repository;
 
-import SZP.model.ClientModel;
+import szp.model.ClientModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

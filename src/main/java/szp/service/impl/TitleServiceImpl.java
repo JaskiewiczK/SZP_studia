@@ -1,8 +1,8 @@
-package SZP.service.impl;
+package szp.service.impl;
 
-import SZP.model.TitleModel;
-import SZP.repository.TitleRepository;
-import SZP.service.TitleService;
+import szp.model.TitleModel;
+import szp.repository.TitleRepository;
+import szp.service.TitleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

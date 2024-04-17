@@ -1,19 +1,17 @@
-package SZP.model;
+package szp.model;
 
-
-
-import lombok.Data;
 
 import jakarta.persistence.*;
+import lombok.Data;
+
 @Data
 @Entity
-@Table(name = "title")
-public class TitleModel {
-
+@Table(name = "vacation_type")
+public class VacationTypeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "title_id")
-    private Integer titleId;
+    @Column(name = "type_id")
+    private Integer typeId;
 
     @Column(name = "name", nullable = false)
     private String name;
