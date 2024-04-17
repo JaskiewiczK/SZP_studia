@@ -14,9 +14,9 @@ public class EmployeeModel {
     @Column(name = "employee_id")
     private Integer employeeId;
 
-    @ManyToOne
-    @JoinColumn(name = "title_id", nullable = false)
-    private TitleModel title;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;

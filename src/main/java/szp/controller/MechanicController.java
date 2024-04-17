@@ -1,7 +1,7 @@
 package szp.controller;
 
 import szp.model.LoginRequestDTO;
-import szp.model.TitleModel;
+import szp.model.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/mechanic")
 public class MechanicController implements EmployeeResource{
     @GetMapping("/")
-    public ResponseEntity<TitleModel> testMechanicController() {
-        TitleModel mechanic = new TitleModel();
-        mechanic.setName("mechanic");
-        mechanic.setTitleId(1);
-        return ResponseEntity.ok(mechanic);
+    public ResponseEntity<Role> testMechanicController() {
+        return ResponseEntity.ok(Role.MECHANIC);
     }
 
     @Override
