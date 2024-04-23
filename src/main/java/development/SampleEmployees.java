@@ -9,40 +9,44 @@ import szp.service.EmployeeService;
 
 import java.sql.Date;
 
-//    it adds sample employees to database with encrypted passwords
-@SpringBootApplication(scanBasePackages = {"szp"})
+ // Execute the main function to add sample employees to database.
+ @SpringBootApplication(scanBasePackages = {"szp"})
 public class SampleEmployees {
     public static void main(String [] args) {
         ConfigurableApplicationContext context = SpringApplication.run(SampleEmployees.class, args);
         EmployeeService employeeService = context.getBean(EmployeeService.class);
-        EmployeeModel admin = new EmployeeModel();
-        admin.setRole(Role.ADMIN);
-        admin.setFirstName("John");
-        admin.setLastName("Doe");
-        admin.setBirthDate(Date.valueOf("1985-05-15"));
-        admin.setPesel("12345678901");
-        admin.setLogin("admin");
-        admin.setPassword("adminPassword");
+        EmployeeModel admin = EmployeeModel.builder()
+                .role(Role.ADMIN)
+                .firstName("John")
+                .lastName("Doe")
+                .birthDate(Date.valueOf("1985-05-15"))
+                .pesel("12345678901")
+                .login("admin")
+                .password("adminPassword")
+                .build();
+
+        EmployeeModel hr = EmployeeModel.builder()
+                .role(Role.HR)
+                .firstName("Alice")
+                .lastName("Smith")
+                .birthDate(Date.valueOf("1990-10-20"))
+                .pesel("98765432109")
+                .login("hr")
+                .password("hrPassword")
+                .build();
+
+        EmployeeModel mechanic = EmployeeModel.builder()
+                .role(Role.MECHANIC)
+                .firstName("Bob")
+                .lastName("Johnson")
+                .birthDate(Date.valueOf("1995-03-25"))
+                .pesel("56789012345")
+                .login("mechanic")
+                .password("mechanicPassword")
+                .build();
+
         employeeService.saveUser(admin);
-
-        EmployeeModel hr = new EmployeeModel();
-        hr.setRole(Role.HR);
-        hr.setFirstName("Alice");
-        hr.setLastName("Smith");
-        hr.setBirthDate(Date.valueOf("1990-10-20"));
-        hr.setPesel("98765432109");
-        hr.setLogin("hr");
-        hr.setPassword("hrPassword");
         employeeService.saveUser(hr);
-
-        EmployeeModel mechanic = new EmployeeModel();
-        mechanic.setRole(Role.MECHANIC);
-        mechanic.setFirstName("Bob");
-        mechanic.setLastName("Johnson");
-        mechanic.setBirthDate(Date.valueOf("1995-03-25"));
-        mechanic.setPesel("56789012345");
-        mechanic.setLogin("mechanic");
-        mechanic.setPassword("mechanicPassword");
         employeeService.saveUser(mechanic);
         context.close();
     }
