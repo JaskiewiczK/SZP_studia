@@ -1,0 +1,25 @@
+openapi: 3.0.3
+info:
+  title: Secured endpoints for MECHANIC employee.
+  description: Secured endpoints exposed only for signed in user with role MECHANIC. <br>
+    All endpoints for mechanic should start with path `/mechanic/`.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/'
+paths:
+  /mechanic/:
+    get:
+      summary: Test request
+      responses:
+        200:
+          description: Successful response
+        403:
+          $ref: '#/components/responses/UnauthorizedAccess'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    UnauthorizedAccess:
+      description: Unauthorized access. User is not logged in or do not have valid permissions(MECHANIC) to access resources.
+    InternalServerError:
+      description: Internal Server Error. Please try again later.

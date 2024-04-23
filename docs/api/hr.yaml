@@ -1,0 +1,26 @@
+openapi: 3.0.3
+info:
+  title: Secured endpoints for HR employee.
+  description: Secured endpoints exposed only for signed in user with role HR. <br>
+    All endpoints for hr should start with path `/hr/`.
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/'
+paths:
+  /hr/:
+    get:
+      summary: Test request
+      responses:
+        200:
+          description: Successful response
+        403:
+          $ref: '#/components/responses/UnauthorizedAccess'
+        500:
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    UnauthorizedAccess:
+      description: Unauthorized access. User is not logged in or do not have valid permissions(HR) to access resources.
+    InternalServerError:
+      description: Internal Server Error. Please try again later.
+  

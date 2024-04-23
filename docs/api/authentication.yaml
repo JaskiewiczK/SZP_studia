@@ -1,0 +1,53 @@
+openapi: 3.0.3
+info:
+  title: Authentication in System Zarzadzania Personelem App
+  description: Authentication in System Zarzadzania Personelem App
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:8080/'
+paths:
+  /auth/login:
+    post:
+      summary: Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: Successful login. Access token and refresh token was generated and send with cookies.
+        401:
+          description: Incorrect user details.
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /auth/refresh-token:
+    get:
+      summary: Refresh Token
+      description: Refresh access token using refresh token. Send refreshed token with cookies. <br>
+        If user log in successfully and after some time you got HTTP 403 response when calling authorized endpoint you should call this endpoint and generate new token.
+      responses:
+        200:
+          description: Token refreshed. New access token send with cookies.
+        403:
+          description: Token could not refresh because refresh token from cookies is expired or not exist.
+        500:
+          $ref: '#/components/responses/InternalServerError'
+  /auth/logout:
+    get:
+      summary: Logout
+      responses:
+        200:
+          description: Successful logout. Access token and refresh token was removed from cookie.
+        500:
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    InternalServerError:
+      description: Internal Server Error. Please try again later.
