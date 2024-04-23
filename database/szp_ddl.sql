@@ -20,7 +20,7 @@ CREATE TABLE szp.employee (
                 pesel VARCHAR NOT NULL,
                 login VARCHAR NOT NULL,
                 password VARCHAR NOT NULL,
-                title VARCHAR NOT NULL,
+                role VARCHAR NOT NULL,
                 CONSTRAINT employee_pk PRIMARY KEY (employee_id)
 );
 
