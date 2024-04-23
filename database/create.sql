@@ -68,6 +68,14 @@ CREATE TABLE szp.assignment (
                                 CONSTRAINT assignment_id PRIMARY KEY (assignment_id)
 );
 
+CREATE TABLE szp.refresh_token (
+                                   id SERIAL NOT NULL,
+                                   expiry_date TIMESTAMP(6) WITH TIME ZONE,
+                                   token       VARCHAR(255),
+                                   employee_id INTEGER,
+                                   CONSTRAINT employee_id PRIMARY KEY (employee_id)
+);
+
 
 ALTER TABLE szp.vacation ADD CONSTRAINT rodzaj_urlopu_urlop_fk
     FOREIGN KEY (type_id)
@@ -105,6 +113,13 @@ ALTER TABLE szp.assignment ADD CONSTRAINT pracownik_zlecenie_fk
         NOT DEFERRABLE;
 
 ALTER TABLE szp.vacation ADD CONSTRAINT pracownik_urlop_fk
+    FOREIGN KEY (employee_id)
+        REFERENCES szp.employee (employee_id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+        NOT DEFERRABLE;
+
+ALTER TABLE szp.refresh_token ADD CONSTRAINT refresh_token_employee_fk
     FOREIGN KEY (employee_id)
         REFERENCES szp.employee (employee_id)
         ON DELETE NO ACTION
