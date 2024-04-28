@@ -37,7 +37,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
                                 .requestMatchers("/auth/login", "/auth/refresh-token").permitAll()
                                 .requestMatchers("/auth/logout").authenticated()
-                                .requestMatchers("/mechanic/**").hasRole("MECHANIC")
+                                .requestMatchers("/employee/**").hasRole("EMPLOYEE")
                                 .requestMatchers("/hr/**").hasRole("HR")
                                 .requestMatchers("/admin/**").hasRole("ADMIN")
                         ).sessionManagement(auth -> auth.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
