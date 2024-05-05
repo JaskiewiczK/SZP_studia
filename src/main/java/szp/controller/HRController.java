@@ -17,7 +17,7 @@ public class HRController{
         return null;
     }
 
-    @PutMapping("/employees")
+    @PostMapping("/employees")
     public ResponseEntity<String> addEmployee(@RequestBody String employeeRequest){
         return null;
     }
@@ -32,7 +32,7 @@ public class HRController{
         return null;
     }
 
-    @PutMapping("/workstations")
+    @PostMapping("/workstations")
     public ResponseEntity<String> addWorkstation(@RequestBody String employeeRequest){
         return null;
     }
@@ -42,7 +42,7 @@ public class HRController{
         return null;
     }
 
-    @PutMapping("/assignments")
+    @PostMapping("/assignments")
     public ResponseEntity<String> addAssignment(@RequestBody String employeeRequest){
         return null;
     }
