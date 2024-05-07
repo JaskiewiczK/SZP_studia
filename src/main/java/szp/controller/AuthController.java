@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import szp.model.AuthRequestDTO;
 import szp.model.RefreshToken;
@@ -21,7 +22,7 @@ import java.util.Optional;
 import static szp.service.JwtService.TokenType.ACCESS_TOKEN;
 import static szp.service.JwtService.TokenType.REFRESH_TOKEN;
 
-@RestController
+@Controller
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
@@ -33,7 +34,13 @@ public class AuthController {
     @Value("${jwt.refresh-token.expiry}")
     private int refreshTokenExpiry;
 
+    @GetMapping("/")
+    public String loginPage() {
+        return "login/login_it";
+    }
+
     @PostMapping("/login")
+    @ResponseBody
     public ResponseEntity<String> authenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO, HttpServletResponse response) {
         try{
             Authentication authentication = authenticationManager.authenticate(
@@ -53,6 +60,7 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
+    @ResponseBody
     public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         Optional<String> token = jwtService.getToken(request, ACCESS_TOKEN);
         if (token.isPresent()) {
@@ -70,6 +78,7 @@ public class AuthController {
     }
 
     @GetMapping("/refresh-token")
+    @ResponseBody
     public ResponseEntity<Object> refreshToken(HttpServletRequest request, HttpServletResponse response){
         String refreshToken = jwtService.getToken(request, REFRESH_TOKEN).orElseThrow(EntityNotFoundException::new);
         return refreshTokenService.findByToken(refreshToken)

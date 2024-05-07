@@ -31,23 +31,23 @@ public class SampleEmployees {
                 .lastName("Smith")
                 .birthDate(Date.valueOf("1990-10-20"))
                 .pesel("98765432109")
-                .login("hr")
+                .login("templates/hr")
                 .password("hrPassword")
                 .build();
 
-        EmployeeModel mechanic = EmployeeModel.builder()
-                .role(Role.MECHANIC)
+        EmployeeModel employee = EmployeeModel.builder()
+                .role(Role.EMPLOYEE)
                 .firstName("Bob")
                 .lastName("Johnson")
                 .birthDate(Date.valueOf("1995-03-25"))
                 .pesel("56789012345")
-                .login("mechanic")
-                .password("mechanicPassword")
+                .login("templates/employee")
+                .password("employeePassword")
                 .build();
 
         employeeService.saveUser(admin);
         employeeService.saveUser(hr);
-        employeeService.saveUser(mechanic);
+        employeeService.saveUser(employee);
         context.close();
     }
 }
