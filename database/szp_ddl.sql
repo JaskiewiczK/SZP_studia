@@ -1,3 +1,10 @@
+CREATE SCHEMA szp;
+CREATE TABLE szp.workstation (
+                workstation_id SERIAL NOT NULL,
+                workstation_name VARCHAR NOT NULL,
+                CONSTRAINT workstation_pk PRIMARY KEY (workstation_id)
+);
+
 
 CREATE TABLE szp.client (
                 client_id SERIAL NOT NULL,
@@ -25,6 +32,15 @@ CREATE TABLE szp.employee (
 );
 
 
+CREATE TABLE szp.refresh_token (
+                employee_id SERIAL NOT NULL,
+                id INTEGER NOT NULL,
+                expire_date DATE NOT NULL,
+                roken VARCHAR NOT NULL,
+                CONSTRAINT refresh_token_pk PRIMARY KEY (employee_id)
+);
+
+
 CREATE TABLE szp.vacation (
                 vacation_id SERIAL NOT NULL,
                 employee_id SERIAL NOT NULL,
@@ -37,24 +53,23 @@ CREATE TABLE szp.vacation (
 
 CREATE TABLE szp.assignment (
                 assignment_id SERIAL NOT NULL,
+                workstation_id SERIAL NOT NULL,
                 employee_id SERIAL NOT NULL,
                 client_id SERIAL NOT NULL,
                 description VARCHAR NOT NULL,
                 assign_date DATE NOT NULL,
                 cost INTEGER NOT NULL,
-                workstation VARCHAR NOT NULL,
                 state VARCHAR NOT NULL,
                 CONSTRAINT assignment_id PRIMARY KEY (assignment_id)
 );
 
-CREATE TABLE szp.refresh_token (
-               id SERIAL NOT NULL,
-               expiry_date TIMESTAMP(6) WITH TIME ZONE,
-               token       VARCHAR(255),
-               employee_id INTEGER,
-               CONSTRAINT employee_id PRIMARY KEY (employee_id)
-);
 
+ALTER TABLE szp.assignment ADD CONSTRAINT workstation_assignment_fk
+FOREIGN KEY (workstation_id)
+REFERENCES szp.workstation (workstation_id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
 
 ALTER TABLE szp.assignment ADD CONSTRAINT klient_zlecenie_fk
 FOREIGN KEY (client_id)
@@ -77,7 +92,7 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE szp.refresh_token ADD CONSTRAINT refresh_token_employee_fk
+ALTER TABLE szp.refresh_token ADD CONSTRAINT employee_refresh_token_fk
 FOREIGN KEY (employee_id)
 REFERENCES szp.employee (employee_id)
 ON DELETE NO ACTION
