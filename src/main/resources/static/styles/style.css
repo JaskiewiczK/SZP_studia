@@ -8,7 +8,7 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f2f2f2; 
-    background-image: url('imagesg');
+    background-image: url("../images/texture.jpg");
     background-repeat: repeat;
     background-size: 30%; 
 }
@@ -18,7 +18,7 @@ header {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    background-image: url("'images");
+    background-image: url("../images/texture.jpg");
     background-repeat: repeat;
     background-size: 35%; 
 }
@@ -87,5 +87,9 @@ footer p {
 }
 .employee-section {
     font-size: 24px;
+}
+
+.errors {
+    color: red;
 }
 
