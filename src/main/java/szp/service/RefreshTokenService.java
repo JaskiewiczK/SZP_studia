@@ -24,8 +24,7 @@ public class RefreshTokenService {
     public RefreshToken createRefreshToken(String username) {
         RefreshToken refreshToken = RefreshToken.builder()
                 .employeeModel(employeeRepository.findByLogin(username).orElseThrow(EntityNotFoundException::new))
-                .token(UUID.randomUUID().toString())
-                .expiryDate(Instant.now().plusMillis(refreshTokenExpiry * 1000l))
+                .token(UUID.randomUUID().toString()).expireDate(Instant.now().plusMillis(refreshTokenExpiry * 1000l))
                 .build();
         return refreshTokenRepository.save(refreshToken);
     }
@@ -34,7 +33,7 @@ public class RefreshTokenService {
     }
 
     public RefreshToken verifyExpiration(RefreshToken token) {
-        if (token.getExpiryDate().isBefore(Instant.now())){
+        if (token.getExpireDate().isBefore(Instant.now())){
             refreshTokenRepository.delete(token);
             throw new RuntimeException("Refresh token expired.");
         }

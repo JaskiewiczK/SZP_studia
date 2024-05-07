@@ -11,13 +11,16 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import szp.model.AuthRequestDTO;
 import szp.model.RefreshToken;
+import szp.model.Role;
 import szp.service.JwtService;
 import szp.service.RefreshTokenService;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import static szp.service.JwtService.TokenType.ACCESS_TOKEN;
 import static szp.service.JwtService.TokenType.REFRESH_TOKEN;
@@ -26,6 +29,7 @@ import static szp.service.JwtService.TokenType.REFRESH_TOKEN;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
+    private static final Logger LOGGER = Logger.getLogger("AuthController");
     private final RefreshTokenService refreshTokenService;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
@@ -36,26 +40,39 @@ public class AuthController {
 
     @GetMapping("/")
     public String loginPage() {
-        return "login/login_it";
+        return "login-page";
     }
 
-    @PostMapping("/login")
-    @ResponseBody
-    public ResponseEntity<String> authenticateAndGetToken(@RequestBody AuthRequestDTO authRequestDTO, HttpServletResponse response) {
+    @GetMapping("/login/success/redirect")
+    public String getLoginRedirectUrl(HttpServletRequest request) {
+        if (request.isUserInRole(Role.HR.toString()))
+            return "hr/hr";
+        if (request.isUserInRole(Role.ADMIN.toString()))
+            return "admin/admin";
+        if (request.isUserInRole(Role.EMPLOYEE.toString()))
+            return "employee/employee";
+        throw new IllegalArgumentException();
+    }
+
+    @PostMapping(value = "/login")
+    public String authenticateAndGetToken(Model model, AuthRequestDTO authRequestDTO, HttpServletResponse response) {
         try{
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
-            if(authentication.isAuthenticated()){
+            if (authentication.isAuthenticated()){
+                LOGGER.info("User with username [%s] - authenticated".formatted(authRequestDTO.getUsername()));
                 refreshTokenService.deleteTokenIfExistsByUsername(authRequestDTO.getUsername());
                 RefreshToken refreshToken = refreshTokenService.createRefreshToken(authRequestDTO.getUsername());
                 String accessToken = jwtService.generateToken(authRequestDTO.getUsername());
                 response.addCookie(createAccessTokenCookie(accessToken));
                 response.addCookie(createRefreshTokenCookie(refreshToken.getToken()));
-                return ResponseEntity.status(200).build();
+                return "redirect:/auth/login/success/redirect";
             }
-            return ResponseEntity.status(401).build();
+            model.addAttribute("errorMessage", "Incorrect username or password.");
+            return "login-page";
         } catch (Exception e){
-            return ResponseEntity.status(401).build();
+            model.addAttribute("errorMessage", "Incorrect username or password.");
+            return "login-page";
         }
     }
 
