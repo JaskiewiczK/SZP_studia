@@ -36,7 +36,7 @@ CREATE TABLE szp.refresh_token (
                 employee_id SERIAL NOT NULL,
                 id INTEGER NOT NULL,
                 expire_date DATE NOT NULL,
-                roken VARCHAR NOT NULL,
+                token VARCHAR NOT NULL,
                 CONSTRAINT refresh_token_pk PRIMARY KEY (employee_id)
 );
 
