@@ -60,12 +60,12 @@ public class AuthController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(authRequestDTO.getUsername(), authRequestDTO.getPassword()));
             if (authentication.isAuthenticated()){
-                LOGGER.info("User with username [%s] - authenticated".formatted(authRequestDTO.getUsername()));
                 refreshTokenService.deleteTokenIfExistsByUsername(authRequestDTO.getUsername());
                 RefreshToken refreshToken = refreshTokenService.createRefreshToken(authRequestDTO.getUsername());
                 String accessToken = jwtService.generateToken(authRequestDTO.getUsername());
                 response.addCookie(createAccessTokenCookie(accessToken));
                 response.addCookie(createRefreshTokenCookie(refreshToken.getToken()));
+                LOGGER.info("User with username [%s] - authenticated".formatted(authRequestDTO.getUsername()));
                 return "redirect:/auth/login/success/redirect";
             }
             model.addAttribute("errorMessage", "Incorrect username or password.");

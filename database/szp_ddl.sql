@@ -31,14 +31,15 @@ CREATE TABLE szp.employee (
                 CONSTRAINT employee_pk PRIMARY KEY (employee_id)
 );
 
-
-CREATE TABLE szp.refresh_token (
-                employee_id SERIAL NOT NULL,
-                id INTEGER NOT NULL,
-                expire_date DATE NOT NULL,
-                token VARCHAR NOT NULL,
-                CONSTRAINT refresh_token_pk PRIMARY KEY (employee_id)
-);
+-- IT WILL BE CREATED WHEN RUNING AN APP
+-- ENSURE OPTION IN application.properties: spring.jpa.properties.hibernate.hbm2ddl.auto=update IS SET
+-- CREATE TABLE szp.refresh_token (
+--                 employee_id SERIAL NOT NULL,
+--                 id INTEGER,
+--                 expire_date TIMESTAMP(6) WITH TIME ZONE NOT NULL,
+--                 token VARCHAR NOT NULL,
+--                 CONSTRAINT refresh_token_pk PRIMARY KEY (employee_id)
+-- );
 
 
 CREATE TABLE szp.vacation (
@@ -92,9 +93,9 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
-ALTER TABLE szp.refresh_token ADD CONSTRAINT employee_refresh_token_fk
-FOREIGN KEY (employee_id)
-REFERENCES szp.employee (employee_id)
-ON DELETE NO ACTION
-ON UPDATE NO ACTION
-NOT DEFERRABLE;
+-- ALTER TABLE szp.refresh_token ADD CONSTRAINT employee_refresh_token_fk
+-- FOREIGN KEY (employee_id)
+-- REFERENCES szp.employee (employee_id)
+-- ON DELETE NO ACTION
+-- ON UPDATE NO ACTION
+-- NOT DEFERRABLE;
