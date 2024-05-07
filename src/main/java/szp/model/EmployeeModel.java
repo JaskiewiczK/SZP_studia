@@ -20,9 +20,6 @@ public class EmployeeModel {
     @Column(name = "employee_id")
     private Integer employeeId;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role", nullable = false)
-    private Role role;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -45,5 +42,8 @@ public class EmployeeModel {
     @Column(name = "password", nullable = false)
     private String password;
 
-    // Getters and setters
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private Role role;
+
 }

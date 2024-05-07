@@ -15,14 +15,6 @@ public class AssignmentModel {
     private Integer assignmentId;
 
     @ManyToOne
-    @JoinColumn(name = "state_id", nullable = false)
-    private AssignmentStateModel state;
-
-    @ManyToOne
-    @JoinColumn(name = "workstation_id", nullable = false)
-    private WorkstationModel workstation;
-
-    @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
     private EmployeeModel employee;
 
@@ -38,5 +30,14 @@ public class AssignmentModel {
 
     @Column(name = "cost", nullable = false)
     private Integer cost;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "state", nullable = false)
+    private State state;
+
+    @OneToOne
+    @JoinColumn(name = "workstation_id")
+    private WorkstationModel workstation;
+
 
 }

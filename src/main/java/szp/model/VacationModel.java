@@ -13,9 +13,6 @@ public class VacationModel {
     @Column(name = "vacation_id ")
     private Integer vacationId;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false)
-    private VacationTypeModel type;
 
     @ManyToOne
     @JoinColumn(name = "employee_id", nullable = false)
