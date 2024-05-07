@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import szp.model.EmployeeModel;
 import szp.repository.EmployeeRepository;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class EmployeeService {
@@ -16,5 +18,9 @@ public class EmployeeService {
 //        saves user encrypting his password
         employee.setPassword(passwordEncoder.encode(employee.getPassword()));
         employeeRepository.save(employee);
+    }
+
+    public List<EmployeeModel> getAllEmployees(){
+       return employeeRepository.findAll();
     }
 }
