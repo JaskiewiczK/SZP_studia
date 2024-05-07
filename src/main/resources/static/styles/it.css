@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2; 
+    background-image: url('../../imagesg');
+    background-repeat: repeat;
+    background-size: 30%; 
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    background-image: url("'../../images");
+    background-repeat: repeat;
+    background-size: 35%; 
+}
+
+
+header h1 {
+    font-size: 24px;
+}
+
+.content {
+    width: 80%;
+    background-color: rgb(240, 240, 240);
+    text-align: center;
+    margin: 0 auto;
+    height: auto;
+    
+}
+
+.buttons-section {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: gray;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.1s ease;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.btn:hover {
+    background-color: rgb(178, 178, 178);
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    font-size: 14px;
+}
+.employee-section {
+    font-size: 24px;
+}
+#databaseContainer {
+    display: block;
+    border: 1px solid #000000;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 40%;
+    justify-content: center;
+    max-height: 150px;
+    overflow-y: auto;
+}
+#contentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    text-align: center; 
+}
+
+#queryContainer {
+    display: flex;
+    margin-top: 20px;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+}
+
+#queryContainer input {
+    width: 50%;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.input-field {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.input-field:focus {
+    outline: none;
+    border-color: #000000;
+}

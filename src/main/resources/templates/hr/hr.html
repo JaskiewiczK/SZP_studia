@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pracownik HR</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Zarządzanie użytkownikami</h1>
+        </div>
+    </header>
+    <section class="content">
+        <br>
+        <section class="functions-section">
+            <div class="container">
+                <br>
+                <button id="harmButton" class="btn">Harmonogram pracy</button>
+                <button id="empmanButton" class="btn">Zarządzanie pracownikami</button>
+                <button id="workplacemanButton" class="btn">Zarządzanie stanowiskami</button>
+                <button id="neworderButton" class="btn">Dodaj zlecenie</button>
+            </div>
+        </section>
+    
+    <section id="employeesContainer" class="container">
+
+    </section>
+    <br>
+    <div id="buttonsContainer"></div>
+</section>
+    <footer>
+        <div class="container">
+            <p><a href="../index.html" class="btn">Wyloguj</a></p>
+        </div>
+    </footer>
+    <script src="scripts/employees.js" defer></script>
+</body>
+</html>
