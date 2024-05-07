@@ -24,7 +24,8 @@ public class RefreshTokenService {
     public RefreshToken createRefreshToken(String username) {
         RefreshToken refreshToken = RefreshToken.builder()
                 .employeeModel(employeeRepository.findByLogin(username).orElseThrow(EntityNotFoundException::new))
-                .token(UUID.randomUUID().toString()).expireDate(Instant.now().plusMillis(refreshTokenExpiry * 1000l))
+                .token(UUID.randomUUID().toString())
+                .expireDate(Instant.now().plusMillis(refreshTokenExpiry * 1000l))
                 .build();
         return refreshTokenRepository.save(refreshToken);
     }

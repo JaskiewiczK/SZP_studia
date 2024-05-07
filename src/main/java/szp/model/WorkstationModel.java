@@ -3,6 +3,7 @@ package szp.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
 
 @Data
 @Entity
@@ -11,10 +12,11 @@ public class WorkstationModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "workstation_id", nullable = false)
-    private Integer workstationId;
+    @Column(name = "workstation_id")
+    private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "workstation_name", nullable = false)
     private String name;
+
 
 }
