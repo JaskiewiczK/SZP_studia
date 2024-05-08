@@ -31,7 +31,7 @@ public class SampleEmployees {
                 .lastName("Smith")
                 .birthDate(Date.valueOf("1990-10-20"))
                 .pesel("98765432109")
-                .login("templates/hr")
+                .login("hr")
                 .password("hrPassword")
                 .build();
 

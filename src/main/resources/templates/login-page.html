@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logowanie</title>
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="../../static/styles/login_style.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/style.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/login_style.css}"/>
 </head>
 
 <body>
@@ -17,10 +17,10 @@
 </header>
 <section class="content">
     <section class="buttons-section">
-        <form action="http://localhost:8080/auth/login" method="post">
+        <form th:action="@{/auth/login}" method="post">
             <div class="form-group">
                 <br>
-                <h3>Zaloguj się jako Specjalista IT:</h3>
+                <h3>Zaloguj się:</h3>
                 <br>
                 <label for="username">Login:</label>
                 <input type="text" id="username" name="username" required>
@@ -30,14 +30,14 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <br>
+            <p th:if="${errorMessage}" class="errors" th:text="${errorMessage}"/>
             <button type="submit">Zaloguj</button>
-            <!-- <a href="../it/it.html" class="btn">Zaloguj</a> -->
         </form>
     </section>
 </section>
 <footer>
     <div class="container">
-        <a href="../index.html" class="btn">Powrót do strony głównej</a>
+        <p>System Zarządzania Personelem</p>
     </div>
 </footer>
 </body>
