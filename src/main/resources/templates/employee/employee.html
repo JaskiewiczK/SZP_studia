@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,38 +9,40 @@
 <body>
     <header>
         <div class="container">
-            <h1>Witaj Jan Andrzej Kowalski!</h1>
+            <h1>Witaj <span th:text="${currentUser.firstName}"></span> <span th:text="${currentUser.secondName}"></span> <span th:text="${currentUser.lastName}"></span>!</h1>
         </div>
     </header>
     <section class="content">
-    <section class="employee-section">
-        <div class="container">
-            <h2>Dane osobowe:</h2>
-            <p>Imię: Jan</p>
-            <p>Dugie imię: Andrzej</p>
-            <p>Nazwisko: Kowalski</p>
-            <p>Email: jan.kowalski@example.com</p>
-            <p>Data urodzenia: 1970-01-01</p>
-            <p>Pesel: 702198342</p>
-            <p>Stanowisko: Pracownik</p>
-            <p>Dostępne dni urlopu: 10</p>
-            <p>Wielkość wynagrodzenia brutto: 8000 zł/msc</p>
-        </div>
-    </section>
+        <section class="employee-section">
+            <div class="container">
+                <h2>Dane osobowe:</h2>
+                <p>Imię: <span th:text="${currentUser.firstName}"></span></p>
+                <p>Drugie imię: <span th:text="${currentUser.secondName}"></span></p>
+                <p>Nazwisko: <span th:text="${currentUser.lastName}"></span></p>
+                <p>Email: <span th:text="${currentUser.login}"></span></p>
+                <p>Data urodzenia: <span th:text="${currentUser.birthDate}"></span></p>
+                <p>Pesel: <span th:text="${currentUser.pesel}"></span></p>
+                <p>Rola: <span th:text="${currentUser.role}"></span></p>
+            </div>
+        </section>
 
-    <section class="functions-section">
-        <div class="container">
-            <br>
-            <button id="vacButton" class="btn">Złóż wniosek</button>
-            <button id="editButton" class="btn">Edytuj dane osobowe</button>
-        </div>
+        <section class="functions-section">
+            <div class="container">
+                <br>
+                <!-- JavaScript to redirect to the update page with the currentUser ID -->
+
+                <form th:action="${currentUser.employeeId}" method="get" >
+                    <button id="editButton" type="submit" class ="btn"> Edytuj dane osbowe</button>
+                </form>
+
+            </div>
+        </section>
     </section>
-</section>
     <footer>
         <div class="container">
             <p><a href="../index.html" class="btn">Wyloguj</a></p>
         </div>
     </footer>
-    <script src="scripts/edit_emp_data.js" defer></script>
+
 </body>
 </html>

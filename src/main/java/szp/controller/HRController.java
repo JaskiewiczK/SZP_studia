@@ -39,6 +39,8 @@ public class HRController{
 
 
 
+
+
     @GetMapping("/workstations")
     public ResponseEntity<String> getWorkstationsInfo() {
         return null;

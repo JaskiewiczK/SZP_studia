@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Form</title>
+</head>
+<body>
+<h1>Employee Form</h1>
+<form  th:action="@{http://localhost:8080/employee/} + ${employee.employeeId} + @{/save}" th:object="${employeeDTO}" method="post">
+    <label>First Name: <input type="text" th:value="${employee.firstName}" /></label><br>
+    <label>Second Name: <input type="text" th:value="${employee.secondName}" /></label><br>
+    <label>Last Name: <input type="text" th:value="${employee.lastName}" /></label><br>
+    <label>Birth Date: <input type="date" th:value="${employee.birthDate}" /></label><br>
+    <label>Pesel: <input type="text" th:value="${employee.pesel}" /></label><br>
+    <label>Login: <input type="text" th:value="${employee.login}" /></label><br>
+    <p><input type="submit" value="Submit" />
+</form>
+</body>
+</html>

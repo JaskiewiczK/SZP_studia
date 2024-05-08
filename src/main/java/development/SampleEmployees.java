@@ -22,7 +22,7 @@ public class SampleEmployees {
                 .birthDate(Date.valueOf("1985-05-15"))
                 .pesel("12345678901")
                 .login("admin")
-                .password("adminPassword")
+                .password("admin")
                 .build();
 
         EmployeeModel hr = EmployeeModel.builder()
@@ -32,7 +32,7 @@ public class SampleEmployees {
                 .birthDate(Date.valueOf("1990-10-20"))
                 .pesel("98765432109")
                 .login("hr")
-                .password("hrPassword")
+                .password("hr")
                 .build();
 
         EmployeeModel employee = EmployeeModel.builder()
@@ -41,8 +41,8 @@ public class SampleEmployees {
                 .lastName("Johnson")
                 .birthDate(Date.valueOf("1995-03-25"))
                 .pesel("56789012345")
-                .login("templates/employee")
-                .password("employeePassword")
+                .login("em")
+                .password("em")
                 .build();
 
         employeeService.saveUser(admin);

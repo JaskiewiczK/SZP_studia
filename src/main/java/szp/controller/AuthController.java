@@ -55,7 +55,7 @@ public class AuthController {
         if (request.isUserInRole(Role.ADMIN.toString()))
             return "admin/admin";
         if (request.isUserInRole(Role.EMPLOYEE.toString()))
-            return "employee/employee";
+            return "redirect:/employee/";
         throw new IllegalArgumentException();
     }
 
