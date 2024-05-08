@@ -1,31 +1,43 @@
 package szp.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import szp.model.EmployeeModel;
 import szp.model.Role;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import szp.service.EmployeeService;
 
-@RestController
+import java.util.List;
+
+@Controller
 @RequestMapping("/hr")
 public class HRController{
+    private final EmployeeService employeeService;
+
+    @Autowired
+    public HRController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
+    }
     @GetMapping("/")
     public ResponseEntity<Role> testHRController() {
         return ResponseEntity.ok(Role.HR);
     }
 
     @GetMapping("/employees")
-    public ResponseEntity<String> getEmployeesInfo() {
-        return null;
+    public String getEmployeesInfo(Model model) {
+
+        List<EmployeeModel> employees = employeeService.getAllEmployees();
+
+        model.addAttribute("employees", employees);
+
+        return "hr/employees";
     }
 
-    @PostMapping("/employees")
-    public ResponseEntity<String> addEmployee(@RequestBody String employeeRequest){
-        return null;
-    }
 
-    @DeleteMapping("/employees")
-    public ResponseEntity<String> removeEmployee(@RequestBody String employeeID){
-        return null;
-    }
+
+
 
     @GetMapping("/workstations")
     public ResponseEntity<String> getWorkstationsInfo() {
