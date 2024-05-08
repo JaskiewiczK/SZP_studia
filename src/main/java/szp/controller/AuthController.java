@@ -14,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import szp.model.AuthRequestDTO;
+import szp.model.EmployeeModel;
 import szp.model.RefreshToken;
 import szp.model.Role;
+import szp.repository.EmployeeRepository;
 import szp.service.JwtService;
 import szp.service.RefreshTokenService;
 
@@ -32,6 +34,7 @@ public class AuthController {
     private static final Logger LOGGER = Logger.getLogger("AuthController");
     private final RefreshTokenService refreshTokenService;
     private final AuthenticationManager authenticationManager;
+    private final EmployeeRepository employeeRepository;
     private final JwtService jwtService;
     @Value("${jwt.access-token.expiry}")
     private int accessTokenCookieExpiry;
@@ -44,7 +47,9 @@ public class AuthController {
     }
 
     @GetMapping("/login/success/redirect")
-    public String getLoginRedirectUrl(HttpServletRequest request) {
+    public String getLoginRedirectUrl(Model model, HttpServletRequest request) {
+        EmployeeModel user = extractEmployeeFrom(request);
+        model.addAttribute("currentUser", user);
         if (request.isUserInRole(Role.HR.toString()))
             return "hr/hr";
         if (request.isUserInRole(Role.ADMIN.toString()))
@@ -125,5 +130,11 @@ public class AuthController {
         accessTokenCookie.setPath("/auth/refresh-token");
         accessTokenCookie.setMaxAge(refreshTokenExpiry);
         return accessTokenCookie;
+    }
+
+    private EmployeeModel extractEmployeeFrom(HttpServletRequest request) {
+        String token = jwtService.getToken(request, ACCESS_TOKEN).orElseThrow();
+        String username = jwtService.extractUsername(token);
+        return employeeRepository.findByLogin(username).orElseThrow();
     }
 }
