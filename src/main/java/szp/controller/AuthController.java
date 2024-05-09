@@ -82,8 +82,7 @@ public class AuthController {
     }
 
     @GetMapping("/logout")
-    @ResponseBody
-    public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpServletRequest request, HttpServletResponse response) {
         Optional<String> token = jwtService.getToken(request, ACCESS_TOKEN);
         if (token.isPresent()) {
             String username = jwtService.extractUsername(token.get());
@@ -96,7 +95,7 @@ public class AuthController {
 
         response.addCookie(accessToken);
         response.addCookie(refreshToken);
-        return ResponseEntity.status(200).build();
+        return "redirect:/auth/";
     }
 
     @GetMapping("/refresh-token")
