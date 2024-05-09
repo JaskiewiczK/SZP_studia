@@ -1,7 +1,6 @@
 package szp.model;
 
 
-import jakarta.persistence.Column;
 import lombok.Data;
 
 @Data

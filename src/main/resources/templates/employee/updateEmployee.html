@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/emp.css}"/>
     <title>Employee Form</title>
 </head>
 <body>
 <h1>Employee Form</h1>
 <form  th:action="@{http://localhost:8080/employee/} + ${employee.employeeId} + @{/save}" th:object="${employeeDTO}" method="post">
-    <label>First Name: <input type="text" th:value="${employee.firstName}" /></label><br>
-    <label>Second Name: <input type="text" th:value="${employee.secondName}" /></label><br>
-    <label>Last Name: <input type="text" th:value="${employee.lastName}" /></label><br>
-    <label>Birth Date: <input type="date" th:value="${employee.birthDate}" /></label><br>
-    <label>Pesel: <input type="text" th:value="${employee.pesel}" /></label><br>
-    <label>Login: <input type="text" th:value="${employee.login}" /></label><br>
+    <label for="first-name">First Name: </label><input id="first-name" name= "firstName" type="text" th:value="${employee.firstName}"/><br>
+    <label for="second-name">Second Name: </label><input id="second-name" name= "secondName" type="text" th:value="${employee.secondName}" /><br>
+    <label for="last-name">Last Name: </label><input id="last-name" name= "lastName" type="text" th:value="${employee.lastName}" /><br>
+    <label for="birth-date">Birth Date: </label><input id="birth-date" name= "birthDate" type="date" th:value="${employee.birthDate}" /><br>
+    <label for="pesel">Pesel: </label><input id="pesel" name= "pesel" type="text" th:value="${employee.pesel}" /><br>
+    <label for="login">Login: </label><input id="login" name= "login" type="text" th:value="${employee.login}" /><br>
     <p><input type="submit" value="Submit" />
 </form>
 </body>
