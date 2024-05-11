@@ -6,10 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import szp.model.EmployeeDTO;
-import szp.model.EmployeeModel;
-import szp.model.Role;
+import szp.model.*;
 import szp.repository.EmployeeRepository;
+import szp.repository.VacationRepository;
 import szp.service.EmployeeService;
 import szp.service.JwtService;
 
@@ -21,6 +20,8 @@ import static szp.service.JwtService.TokenType.ACCESS_TOKEN;
 public class EmployeeController {
     EmployeeRepository employeeRepository;
     EmployeeService employeeService;
+
+    VacationRepository vacationRepository;
     JwtService jwtService;
     private EmployeeModel extractEmployeeFrom(HttpServletRequest request) {
         String token = jwtService.getToken(request, ACCESS_TOKEN).orElseThrow();
@@ -56,5 +57,26 @@ public class EmployeeController {
         employeeRepository.save(employee);
         return "redirect:/employee/";
     }
+
+    @PostMapping("/vacationRequest/{id}")
+    public String sendVacationRequest(@PathVariable("id") Integer id, Model model, @ModelAttribute("vacationRequestDTO")VacationRequestDTO vacationRequestDTO){
+        VacationModel vacation = new VacationModel();
+        EmployeeModel employee = employeeRepository.findById(id).orElseThrow();
+        vacation.setEmployee(employee);
+        vacation.setBeginning(vacationRequestDTO.getBeginning());
+        vacation.setEnding(vacationRequestDTO.getEnding());
+        vacation.setType(vacationRequestDTO.getType());
+        vacationRepository.save(vacation);
+        return "employee/success";
+    }
+
+    @GetMapping("/vacation-request")
+    public String showVacationRequestForm(Model model, HttpServletRequest request){
+        EmployeeModel user = extractEmployeeFrom(request);
+        model.addAttribute("employee", user);
+        return "employee/vacationRequest";
+    }
+
+
 
 }

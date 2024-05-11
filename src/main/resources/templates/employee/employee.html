@@ -29,10 +29,20 @@
         <section class="functions-section">
             <div class="container">
                 <br>
-                <!-- JavaScript to redirect to the update page with the currentUser ID -->
+
 
                 <form th:action="${currentUser.employeeId}" method="get" >
                     <button id="editButton" type="submit" class ="btn"> Edytuj dane osbowe</button>
+                </form>
+
+            </div>
+
+            <div class="container">
+                <br>
+
+
+                <form th:action="@{vacation-request}" method="get" >
+                    <button id="vacationButton" type="submit" class ="btn"> Złóż wniosek o urlop</button>
                 </form>
 
             </div>

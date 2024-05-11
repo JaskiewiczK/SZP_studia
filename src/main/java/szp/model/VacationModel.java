@@ -24,4 +24,7 @@ public class VacationModel {
     @Column(name = "ending", nullable = false)
     private  java.sql.Date  ending;
 
+    @Column(name = "vacation_type", nullable = false)
+    private String type;
+
 }

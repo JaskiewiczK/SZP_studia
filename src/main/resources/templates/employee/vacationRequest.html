@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/emp.css}"/>
+  <title>Employee Form</title>
+</head>
+<body>
+<h1>Employee Form</h1>
+<form th:action="@{http://localhost:8080/employee/vacationRequest/} + ${employee.employeeId}" th:object="${vacationRequestDTO}" method="post">
+  <label for="beginning">Beginning: </label><input id="beginning" name="beginning" type="date"  /><br>
+  <label for="ending">Ending: </label><input id="ending" name="ending" type="date"  /><br>
+  <label for="type">Type: </label><input id="type" name="type" type="text"  /><br>
+  <input type="submit" value="Submit" />
+</form>
+
+
+</body>
+</html>
