@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Employees</title>
+</head>
+<body>
+<h1>All Employees</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Stanowisko ID</th>
+        <th>Nazwa</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="workstation : ${workstations}">
+        <td th:text="${workstation.id}"></td>
+        <td th:text="${workstation.name}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+<form  th:action="@{http://localhost:8080/hr/workstations}" th:object="${workstationDTO}" method="post">
+    <label for="name">Nazwa stanowiska: </label><input id="name" name= "name" type="text"/><br>
+    <p><input type="submit" value="Dodaj stanowisko" />
+</form>
+
+
+
+<form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
+    <label for="id">ID pracownika: </label><input id="id" name= "id" type="text"/><br>
+    <p><input type="submit" value="Usun stanowisko" />
+</form>
+
+
+
+<form th:action="@{http://localhost:8080/hr/}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+</form>
+</body>
+</html>

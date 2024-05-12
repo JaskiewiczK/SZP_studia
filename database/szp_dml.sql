@@ -30,16 +30,16 @@ values
 INSERT INTO szp."assignment"
 (assignment_id, employee_id, client_id, description, assign_date, "cost", workstation_id, state)
 values
-(1, 1, 6, 'Wymiana klocków hamulcowych', '01-04-2024', 300, 1, 'Zakończone'),
-(2, 2, 7, 'Polerowanie', '04-05-2024', 450, 2, 'Zakończone'),
-(3, 2, 1, 'Malowanie', '04-22-2024', 700, 1, 'W trakcie'),
-(4, 2, 2, 'Malowanie', '11-10-2023', 800, 2, 'Zakończone'),
-(5, 1, 3, 'Diagnostyka', '01-05-2024', 200, 3, 'Zakończone'),
-(6, 3, 6, 'Zmiana opon', '05-02-2024', 340, 1, 'Oczekiwanie na pojazd'),
-(7, 2, 4, 'Diagnostyka', '12-30-2023', 200, 2, 'W trakcie'),
-(8, 3, 4, 'Elektryka', '11-24-2023', 650, 1, 'Odrzucone'),
-(9, 3, 5, 'Wstawienie szyby', '10-10-2023', 100, 3, 'Zakończone'),
-(10, 2, 2, 'Diagnostyka', '02-29-2024', 250, 3, 'Zakończone');
+(1, 1, 6, 'Wymiana klocków hamulcowych', '01-04-2024', 300, 1, 'DONE'),
+(2, 2, 7, 'Polerowanie', '04-05-2024', 450, 2, 'DONE'),
+(3, 2, 1, 'Malowanie', '04-22-2024', 700, 1, 'DONE'),
+(4, 2, 2, 'Malowanie', '11-10-2023', 800, 2, 'DONE'),
+(5, 1, 3, 'Diagnostyka', '01-05-2024', 200, 3, 'DONE'),
+(6, 3, 6, 'Zmiana opon', '05-02-2024', 340, 1, 'DONE'),
+(7, 2, 4, 'Diagnostyka', '12-30-2023', 200, 2, 'DONE'),
+(8, 3, 4, 'Elektryka', '11-24-2023', 650, 1, 'DONE'),
+(9, 3, 5, 'Wstawienie szyby', '10-10-2023', 100, 3, 'DONE'),
+(10, 2, 2, 'Diagnostyka', '02-29-2024', 250, 3, 'DONE');
 
 
 

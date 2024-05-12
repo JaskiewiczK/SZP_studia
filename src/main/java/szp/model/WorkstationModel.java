@@ -18,5 +18,7 @@ public class WorkstationModel {
     @Column(name = "workstation_name", nullable = false)
     private String name;
 
+    @OneToMany(mappedBy = "workstation", cascade = CascadeType.ALL)
+    private List<AssignmentModel> assignments;
 
 }

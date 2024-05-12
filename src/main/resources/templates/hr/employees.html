@@ -17,6 +17,7 @@
         <th>Birth Date</th>
         <th>Pesel</th>
         <th>Login</th>
+        <th>Stanowisko</th>
     </tr>
     </thead>
     <tbody>
@@ -29,8 +30,19 @@
         <td th:text="${employee.birthDate}"></td>
         <td th:text="${employee.pesel}"></td>
         <td th:text="${employee.login}"></td>
+        <td th:text="${employee.role}"></td>
     </tr>
     </tbody>
 </table>
+
+<form  th:action="@{http://localhost:8080/hr/employees}" th:object="${idDTO}" method="post">
+    <label for="id">ID pracownika: </label><input id="id" name= "id" type="text"/><br>
+    <p><input type="submit" value="Zwolnij pracownika" />
+</form>
+
+
+<form th:action="@{http://localhost:8080/hr/}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+</form>
 </body>
 </html>

@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Data
 @Entity
@@ -45,5 +47,11 @@ public class EmployeeModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private Role role;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<AssignmentModel> assignments;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<VacationModel> vacations;
 
 }

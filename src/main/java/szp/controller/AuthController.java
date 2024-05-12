@@ -51,7 +51,7 @@ public class AuthController {
         EmployeeModel user = extractEmployeeFrom(request);
         model.addAttribute("currentUser", user);
         if (request.isUserInRole(Role.HR.toString()))
-            return "hr/hr";
+            return "redirect:/hr/";
         if (request.isUserInRole(Role.ADMIN.toString()))
             return "admin/admin";
         if (request.isUserInRole(Role.EMPLOYEE.toString()))

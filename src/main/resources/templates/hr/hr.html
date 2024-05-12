@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,9 +17,15 @@
         <section class="functions-section">
             <div class="container">
                 <br>
+                <form th:action="employees" method="get" >
+                    <button id="employeesButton" type="submit" class ="btn"> Zarzadzanie pracownikami</button>
+                </form>
+                <form th:action="workstations" method="get" >
+                    <button id="workstationsButton" type="submit" class ="btn"> Zarzadzanie stanowiskami</button>
+                </form>
                 <button id="harmButton" class="btn">Harmonogram pracy</button>
-                <button id="empmanButton" class="btn">Zarządzanie pracownikami</button>
-                <button id="workplacemanButton" class="btn">Zarządzanie stanowiskami</button>
+
+
                 <button id="neworderButton" class="btn">Dodaj zlecenie</button>
             </div>
         </section>
