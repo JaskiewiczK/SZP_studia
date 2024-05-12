@@ -3,6 +3,8 @@ package szp.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "client")
@@ -30,4 +32,8 @@ public class ClientModel {
 
     @Column(name = "bank_account", nullable = false)
     private String bankAccount;
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<AssignmentModel> assignments;
+
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Employees</title>
+</head>
+<body>
+
+<form th:action="@{http://localhost:8080/hr/customers/add}" th:object="${clientDTO}" method="post">
+  <label for="firstName">First Name: </label><input id="firstName" name="firstName" type="text"/><br>
+  <label for="secondName">Second Name: </label><input id="secondName" name="secondName" type="text"/><br>
+  <label for="lastName">Last Name: </label><input id="lastName" name="lastName" type="text"/><br>
+  <label for="email">Email: </label><input id="email" name="email" type="text"/><br>
+  <label for="phoneNumber">Phone Number: </label><input id="phoneNumber" name="phoneNumber" type="text"/><br>
+  <label for="bankAccount">Bank Account: </label><input id="bankAccount" name="bankAccount" type="text"/><br>
+  <p><input type="submit" value="Create Customer" /></p>
+</form>
+</body>
+</html>

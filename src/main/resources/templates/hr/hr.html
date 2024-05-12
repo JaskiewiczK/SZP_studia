@@ -24,9 +24,13 @@
                     <button id="workstationsButton" type="submit" class ="btn"> Zarzadzanie stanowiskami</button>
                 </form>
                 <button id="harmButton" class="btn">Harmonogram pracy</button>
+                <form th:action="customers" method="get" >
+                    <button id="customersButton" type="submit" class ="btn"> Zarzadzanie klientami</button>
+                </form>
 
-
-                <button id="neworderButton" class="btn">Dodaj zlecenie</button>
+                <form th:action="assignments" method="get" >
+                    <button id="assignmentsButton" type="submit" class ="btn"> Zarzadzanie zleceniami</button>
+                </form>
             </div>
         </section>
     

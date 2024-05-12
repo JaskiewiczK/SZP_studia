@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Employees</title>
+</head>
+<body>
+
+<form th:action="@{http://localhost:8080/hr/assignments/add}" th:object="${assignmentDTO}" method="post">
+  <label for="employeeId">Employee ID: </label><input id="employeeId" name="employeeId" type="text"/><br>
+  <label for="customerId">Customer ID: </label><input id="customerId" name="customerId" type="text"/><br>
+  <label for="workstationId">Workstation ID: </label><input id="workstationId" name="workstationId" type="text"/><br>
+  <label for="description">Description: </label><input id="description" name="description" type="text"/><br>
+  <label for="cost">Cost: </label><input id="cost" name="cost" type="text"/><br>
+  <p><input type="submit" value="utowrz zlecnie" /></p>
+</form>
+
+</body>
+</html>

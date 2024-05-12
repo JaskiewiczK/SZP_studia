@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>All Employees</title>
+</head>
+<body>
+<h1>All Clients</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Client ID</th>
+    <th>First Name</th>
+    <th>Second Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone Number</th>
+    <th>Bank Account</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="client : ${clients}">
+    <td th:text="${client.clientId}"></td>
+    <td th:text="${client.firstName}"></td>
+    <td th:text="${client.secondName}"></td>
+    <td th:text="${client.lastName}"></td>
+    <td th:text="${client.email}"></td>
+    <td th:text="${client.phoneNumber}"></td>
+    <td th:text="${client.bankAccount}"></td>
+  </tr>
+  </tbody>
+</table>
+
+
+<form th:action="@{http://localhost:8080/hr/customers/add}" method="get" >
+  <button id="addClientButton" type="submit" class ="btn"> Dodaj klienta</button>
+</form>
+
+<br>
+<form th:action="@{http://localhost:8080/hr/customers/remove}" th:object="${idDTO}" method="post">
+  <label for="id">ID klienta: </label><input id="id" name= "id" type="text"/><br>
+  <button id="removeClientButton" type="submit" class ="btn"> Usun klienta</button>
+</form>
+
+
+<form th:action="@{http://localhost:8080/hr/}" method="get" >
+  <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+</form>
+</body>
+</html>
