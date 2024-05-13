@@ -12,6 +12,8 @@ import szp.repository.VacationRepository;
 import szp.service.EmployeeService;
 import szp.service.JwtService;
 
+import java.util.List;
+
 import static szp.service.JwtService.TokenType.ACCESS_TOKEN;
 
 @Controller
@@ -76,6 +78,15 @@ public class EmployeeController {
         model.addAttribute("employee", user);
         return "employee/vacationRequest";
     }
+
+    @GetMapping("/vacation/{id}")
+    public String showVacation(@PathVariable("id") Integer id, Model model){
+        List<VacationModel> vacations = vacationRepository.findByEmployee_EmployeeId(id);
+        model.addAttribute("vacations", vacations);
+        return "employee/vacation";
+    }
+
+
 
 
 

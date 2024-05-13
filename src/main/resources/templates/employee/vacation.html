@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/emp.css}"/>
+  <title>Success request</title>
+</head>
+<body>
+<h1>All Vacations</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Beginning</th>
+    <th>Ending</th>
+    <th>Vacation Type</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="vacation : ${vacations}">
+    <td th:text="${vacation.beginning}"></td>
+    <td th:text="${vacation.ending}"></td>
+    <td th:text="${vacation.type}"></td>
+  </tr>
+  </tbody>
+</table>
+<div class="container">
+  <br>
+
+
+  <form th:action="@{http://localhost:8080/employee/}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+  </form>
+
+</div>
+</body>
+</html>

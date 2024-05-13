@@ -46,6 +46,16 @@
                 </form>
 
             </div>
+
+            <div class="container">
+                <br>
+
+
+                <form th:action="@{vacation/} + ${currentUser.employeeId}" method="get" >
+                    <button id="vacationListButton" type="submit" class ="btn"> Wyswietl urlopy</button>
+                </form>
+
+            </div>
         </section>
     </section>
     <footer>
