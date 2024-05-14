@@ -2,11 +2,21 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All Employees</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista stanowisk</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
 </head>
 <body>
-<h1>All Employees</h1>
-<table>
+<header>
+    <div class="container">
+    </div>
+</header>
+<section class="content">
+    <br>
+<h1>Lista stanowisk</h1>
+    <br>
+    <br>
+<table class="workstation-table">
     <thead>
     <tr>
         <th>Stanowisko ID</th>
@@ -21,17 +31,17 @@
     </tbody>
 </table>
 
-
+<br>
 <form  th:action="@{http://localhost:8080/hr/workstations}" th:object="${workstationDTO}" method="post">
     <label for="name">Nazwa stanowiska: </label><input id="name" name= "name" type="text"/><br>
-    <p><input type="submit" value="Dodaj stanowisko" />
+    <p><input type="submit" class ="btn" value="Dodaj stanowisko" />
 </form>
 
-
+<br>
 
 <form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
-    <label for="id">ID pracownika: </label><input id="id" name= "id" type="text"/><br>
-    <p><input type="submit" value="Usun stanowisko" />
+    <label for="id">ID stanowiska: </label><input id="id" name= "id" type="text"/><br>
+    <p><input type="submit" class ="btn" value="Usun stanowisko" />
 </form>
 
 
@@ -39,5 +49,11 @@
 <form th:action="@{http://localhost:8080/hr/}" method="get" >
     <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
 </form>
+</section>
+<footer>
+    <div class="container">
+        <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+    </div>
+</footer>
 </body>
 </html>

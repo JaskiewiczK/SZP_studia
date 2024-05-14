@@ -4,18 +4,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" th:href="@{/styles/emp.css}"/>
-  <title>Success request</title>
+  <title>Dodano zlecenie pomyślnie</title>
 </head>
 <body>
-Wniosek zloznoy pomyslnie
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+  <br>
+  <h1>Dodano zlecenie pomyślnie</h1>
+  <br>
+  <br>
 <div class="container">
   <br>
 
 
   <form th:action="@{http://localhost:8080/hr/}" method="get" >
-    <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+    <button id="vacationButton" type="submit" class ="btn"> Powrót do menu</button>
   </form>
 
 </div>
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>

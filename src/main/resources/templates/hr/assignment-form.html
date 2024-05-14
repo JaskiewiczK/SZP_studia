@@ -2,18 +2,33 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>All Employees</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dodaj zlecenie</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
 </head>
 <body>
-
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+  <br>
+  <h1>Dodaj nowe zlecenie</h1>
+  <br>
+  <br>
 <form th:action="@{http://localhost:8080/hr/assignments/add}" th:object="${assignmentDTO}" method="post">
-  <label for="employeeId">Employee ID: </label><input id="employeeId" name="employeeId" type="text"/><br>
-  <label for="customerId">Customer ID: </label><input id="customerId" name="customerId" type="text"/><br>
-  <label for="workstationId">Workstation ID: </label><input id="workstationId" name="workstationId" type="text"/><br>
-  <label for="description">Description: </label><input id="description" name="description" type="text"/><br>
-  <label for="cost">Cost: </label><input id="cost" name="cost" type="text"/><br>
-  <p><input type="submit" value="utowrz zlecnie" /></p>
+  <p>ID pracownika: </p><input id="employeeId" name="employeeId" type="text"/><br>
+  <p>ID klienta: </p><input id="customerId" name="customerId" type="text"/><br>
+  <p>ID stanowiska: </p><input id="workstationId" name="workstationId" type="text"/><br>
+  <p>Opis: </p><input id="description" name="description" type="text"/><br>
+  <p>Koszt: </p><input id="cost" name="cost" type="text"/><br>
+  <p><input type="submit" class ="btn" value="Dodaj zlecenie" /></p>
 </form>
-
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>

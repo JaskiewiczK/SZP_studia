@@ -9,20 +9,46 @@
 <body>
     <header>
         <div class="container">
-            <h1>Witaj <span th:text="${currentUser.firstName}"></span> <span th:text="${currentUser.secondName}"></span> <span th:text="${currentUser.lastName}"></span>!</h1>
         </div>
     </header>
     <section class="content">
+        <br>
+        <h1>Witaj <span th:text="${currentUser.firstName}"></span> <span th:text="${currentUser.secondName}"></span> <span th:text="${currentUser.lastName}"></span>!</h1>
+        <br>
+        <h2>Dane osobowe:</h2>
+        <br>
         <section class="employee-section">
             <div class="container">
-                <h2>Dane osobowe:</h2>
-                <p>Imię: <span th:text="${currentUser.firstName}"></span></p>
-                <p>Drugie imię: <span th:text="${currentUser.secondName}"></span></p>
-                <p>Nazwisko: <span th:text="${currentUser.lastName}"></span></p>
-                <p>Email: <span th:text="${currentUser.login}"></span></p>
-                <p>Data urodzenia: <span th:text="${currentUser.birthDate}"></span></p>
-                <p>Pesel: <span th:text="${currentUser.pesel}"></span></p>
-                <p>Rola: <span th:text="${currentUser.role}"></span></p>
+                <table class="employee-table">
+                    <tr>
+                        <td>Imię:</td>
+                        <td><span th:text="${currentUser.firstName}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Drugie imię:</td>
+                        <td><span th:text="${currentUser.secondName}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Nazwisko:</td>
+                        <td><span th:text="${currentUser.lastName}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><span th:text="${currentUser.login}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Data urodzenia:</td>
+                        <td><span th:text="${currentUser.birthDate}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Pesel:</td>
+                        <td><span th:text="${currentUser.pesel}"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Rola:</td>
+                        <td><span th:text="${currentUser.role}"></span></td>
+                    </tr>
+                </table>
             </div>
         </section>
 

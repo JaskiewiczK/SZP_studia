@@ -2,27 +2,37 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>All assignment</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista zleceń</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
 </head>
 <body>
-<h1>All assignment</h1>
-
-<table>
+<header>
+    <div class="container">
+    </div>
+</header>
+<section class="content">
+    <br>
+<h1>Lista zleceń</h1>
+    <br>
+    <br>
+    <div class="table-container">
+<table class="employee-table">
     <thead>
     <tr>
-        <th>Assignment ID</th>
-        <th>Employee ID</th>
-        <th>Employee FirstName</th>
-        <th>Employee LastName</th>
-        <th>Client ID</th>
-        <th>Client firstname</th>
-        <th>Client lastname</th>
-        <th>Description</th>
-        <th>Assign Date</th>
-        <th>Cost</th>
-        <th>State</th>
-        <th>Workstation ID</th>
-        <th>Workstation name</th>
+        <th>ID zlecenia</th>
+        <th>ID pracownika</th>
+        <th>Imię pracownika</th>
+        <th>Nazwisko pracownika</th>
+        <th>ID klienta</th>
+        <th>Imię klienta</th>
+        <th>Nazwisko klienta</th>
+        <th>Opis</th>
+        <th>Data zatwierdzenia</th>
+        <th>Koszt</th>
+        <th>Status</th>
+        <th>ID stanowiska</th>
+        <th>Nazwa stanowiska</th>
     </tr>
     </thead>
     <tbody>
@@ -43,22 +53,29 @@
     </tr>
     </tbody>
 </table>
-
+    </div>
+    <br>
 
 <form th:action="@{http://localhost:8080/hr/assignments/add}" method="get" >
-    <button id="addAssignmentButton" type="submit" class ="btn"> Utworz nowe zlecenie</button>
+    <button id="addAssignmentButton" type="submit" class ="btn"> Utwórz nowe zlecenie</button>
 </form>
 
 <br>
 <form  th:action="@{http://localhost:8080/hr/assignments/status}" th:object="${AssignmentStatusDTO}" method="post">
     <label for="id">Id: </label><input id="id" name= "id" type="text"/><br>
     <label for="status">Status: </label><input id="status" name= "status" type="text"/><br>
-    <p><input type="submit" value="Zmien status" />
+    <p><input type="submit" class ="btn" value="Zmień status" />
 </form>
 
 
 <form th:action="@{http://localhost:8080/hr/}" method="get" >
     <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
 </form>
+</section>
+<footer>
+    <div class="container">
+        <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+    </div>
+</footer>
 </body>
 </html>

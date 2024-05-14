@@ -9,12 +9,13 @@
 <body>
     <header>
         <div class="container">
-            <h1>Zarządzanie użytkownikami</h1>
         </div>
     </header>
     <section class="content">
         <br>
         <section class="functions-section">
+            <h1>Zarządzanie</h1>
+            <br>
             <div class="container">
                 <br>
                 <form th:action="employees" method="get" >
@@ -46,7 +47,7 @@
 </section>
     <footer>
         <div class="container">
-            <p><a href="../index.html" class="btn">Wyloguj</a></p>
+            <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
         </div>
     </footer>
     <script src="scripts/employees.js" defer></script>

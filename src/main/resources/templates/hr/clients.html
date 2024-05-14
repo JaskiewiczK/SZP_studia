@@ -2,20 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>All Employees</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista klientów</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
 </head>
 <body>
-<h1>All Clients</h1>
-<table>
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+  <br>
+<h1>Lista klientów</h1>
+  <br>
+  <br>
+<table class="employee-table">
   <thead>
   <tr>
-    <th>Client ID</th>
-    <th>First Name</th>
-    <th>Second Name</th>
-    <th>Last Name</th>
+    <th>ID</th>
+    <th>Imię</th>
+    <th>Drugie imię</th>
+    <th>Nazwisko</th>
     <th>Email</th>
-    <th>Phone Number</th>
-    <th>Bank Account</th>
+    <th>Nr telefonu</th>
+    <th>Nr konta bankowego</th>
   </tr>
   </thead>
   <tbody>
@@ -30,7 +40,7 @@
   </tr>
   </tbody>
 </table>
-
+<br>
 
 <form th:action="@{http://localhost:8080/hr/customers/add}" method="get" >
   <button id="addClientButton" type="submit" class ="btn"> Dodaj klienta</button>
@@ -46,5 +56,11 @@
 <form th:action="@{http://localhost:8080/hr/}" method="get" >
   <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
 </form>
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>

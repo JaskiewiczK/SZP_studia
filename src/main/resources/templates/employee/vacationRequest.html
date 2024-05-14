@@ -7,14 +7,25 @@
   <title>Employee Form</title>
 </head>
 <body>
-<h1>Employee Form</h1>
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+<h1>Wniosek o urlop</h1>
+  <br>
 <form th:action="@{http://localhost:8080/employee/vacationRequest/} + ${employee.employeeId}" th:object="${vacationRequestDTO}" method="post">
-  <label for="beginning">Beginning: </label><input id="beginning" name="beginning" type="date"  /><br>
-  <label for="ending">Ending: </label><input id="ending" name="ending" type="date"  /><br>
-  <label for="type">Type: </label><input id="type" name="type" type="text"  /><br>
-  <input type="submit" value="Submit" />
+  <p>Początek urlopu: </p><input id="beginning" name="beginning" type="date"  /><br>
+  <p>Koniec urlopu: </p><input id="ending" name="ending" type="date"  /><br>
+  <p>Powód: </p><input id="type" name="type" type="text"  /><br>
+  <br>
+  <input type="submit" value="Prześlij" />
 </form>
-
-
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>

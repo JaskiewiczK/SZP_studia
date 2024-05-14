@@ -7,31 +7,43 @@
   <title>Success request</title>
 </head>
 <body>
-<h1>All Vacations</h1>
-<table>
-  <thead>
-  <tr>
-    <th>Beginning</th>
-    <th>Ending</th>
-    <th>Vacation Type</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="vacation : ${vacations}">
-    <td th:text="${vacation.beginning}"></td>
-    <td th:text="${vacation.ending}"></td>
-    <td th:text="${vacation.type}"></td>
-  </tr>
-  </tbody>
-</table>
-<div class="container">
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+<h1>Wszystkie urlopy:</h1>
   <br>
-
-
+  <table class="vacations">
+    <thead>
+    <tr>
+      <th>Początek</th>
+      <th>Koniec</th>
+      <th>Typ urlopu</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="vacation : ${vacations}">
+      <td th:text="${vacation.beginning}"></td>
+      <td th:text="${vacation.ending}"></td>
+      <td th:text="${vacation.type}"></td>
+    </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
   <form th:action="@{http://localhost:8080/employee/}" method="get" >
     <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
   </form>
+</section>
+<div class="container">
+  <br>
 
 </div>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>

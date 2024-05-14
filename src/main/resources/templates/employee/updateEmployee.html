@@ -4,18 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" th:href="@{/styles/emp.css}"/>
-    <title>Employee Form</title>
+    <title>Edycja danych osobowych</title>
 </head>
 <body>
-<h1>Employee Form</h1>
+<header>
+    <div class="container">
+    </div>
+</header>
+<section class="content">
+<h1>Edytuj dane osobowe:</h1>
+    <br>
 <form  th:action="@{http://localhost:8080/employee/} + ${employee.employeeId} + @{/save}" th:object="${employeeDTO}" method="post">
-    <label for="first-name">First Name: </label><input id="first-name" name= "firstName" type="text" th:value="${employee.firstName}"/><br>
-    <label for="second-name">Second Name: </label><input id="second-name" name= "secondName" type="text" th:value="${employee.secondName}" /><br>
-    <label for="last-name">Last Name: </label><input id="last-name" name= "lastName" type="text" th:value="${employee.lastName}" /><br>
-    <label for="birth-date">Birth Date: </label><input id="birth-date" name= "birthDate" type="date" th:value="${employee.birthDate}" /><br>
-    <label for="pesel">Pesel: </label><input id="pesel" name= "pesel" type="text" th:value="${employee.pesel}" /><br>
-    <label for="login">Login: </label><input id="login" name= "login" type="text" th:value="${employee.login}" /><br>
-    <p><input type="submit" value="Submit" />
+    <p>Imię: </p><br><input id="first-name" name= "firstName" type="text" th:value="${employee.firstName}"/><br>
+    <p>Drugie imię: </p><br><input id="second-name" name= "secondName" type="text" th:value="${employee.secondName}" /><br>
+    <p>Nazwisko: </p><br><input id="last-name" name= "lastName" type="text" th:value="${employee.lastName}" /><br>
+    <p>Data urodzenia: </p><br><input id="birth-date" name= "birthDate" type="date" th:value="${employee.birthDate}" /><br>
+    <p>Pesel: </p><br><input id="pesel" name= "pesel" type="text" th:value="${employee.pesel}" /><br>
+    <p>Login: </p><br><input id="login" name= "login" type="text" th:value="${employee.login}" /><br>
+    <p><input type="submit" value="Zatwierdź" />
+</section>
 </form>
 </body>
+<footer>
+    <div class="container">
+        <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+    </div>
+</footer>
 </html>

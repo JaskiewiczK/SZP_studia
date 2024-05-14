@@ -2,18 +2,34 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>All Employees</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista klientów</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
 </head>
 <body>
-
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+  <br>
+  <h1>Dodaj klienta</h1>
+  <br>
+  <br>
 <form th:action="@{http://localhost:8080/hr/customers/add}" th:object="${clientDTO}" method="post">
-  <label for="firstName">First Name: </label><input id="firstName" name="firstName" type="text"/><br>
-  <label for="secondName">Second Name: </label><input id="secondName" name="secondName" type="text"/><br>
-  <label for="lastName">Last Name: </label><input id="lastName" name="lastName" type="text"/><br>
-  <label for="email">Email: </label><input id="email" name="email" type="text"/><br>
-  <label for="phoneNumber">Phone Number: </label><input id="phoneNumber" name="phoneNumber" type="text"/><br>
-  <label for="bankAccount">Bank Account: </label><input id="bankAccount" name="bankAccount" type="text"/><br>
-  <p><input type="submit" value="Create Customer" /></p>
+  <p>Imię: </p><input id="firstName" name="firstName" type="text"/><br>
+  <p>Drugie imię: </p><input id="secondName" name="secondName" type="text"/><br>
+  <p>Nazwisko: </p><input id="lastName" name="lastName" type="text"/><br>
+  <p>Email: </p><input id="email" name="email" type="text"/><br>
+  <p>Nr telefonu: </p><input id="phoneNumber" name="phoneNumber" type="text"/><br>
+  <p>Nr konta bankowego: </p><input id="bankAccount" name="bankAccount" type="text"/><br>
+  <p><input type="submit" class ="btn" value="Dodaj klienta" /></p>
 </form>
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
 </body>
 </html>
