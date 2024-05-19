@@ -16,6 +16,7 @@
 <h1>Lista klientów</h1>
   <br>
   <br>
+  <div class="table-container">
 <table class="employee-table">
   <thead>
   <tr>
@@ -26,7 +27,7 @@
     <th>Email</th>
     <th>Nr telefonu</th>
     <th>Nr konta bankowego</th>
-    <th>Akcja</th>
+    <th>Usuń</th>
   </tr>
   </thead>
   <tbody>
@@ -41,12 +42,13 @@
     <td>
         <form th:action="@{http://localhost:8080/hr/customers/remove}" th:object="${idDTO}" method="post">
             <input type="hidden" name="id" th:value="${client.clientId}" />
-            <input class="btn" type="submit" value="Usun" />
+          <input class="delbtn" type="submit" value="X" />
         </form>
     </td>
   </tr>
   </tbody>
 </table>
+  </div>
 <br>
 
 <form th:action="@{http://localhost:8080/hr/customers/add}" method="get" >

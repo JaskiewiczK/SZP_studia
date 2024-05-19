@@ -21,7 +21,7 @@
     <tr>
         <th>Stanowisko ID</th>
         <th>Nazwa</th>
-        <th>Akcja</th>
+        <th>Usuń</th>
     </tr>
     </thead>
     <tbody>
@@ -31,7 +31,7 @@
         <td>
             <form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
                     <input type="hidden" name="id" th:value="${workstation.id}" />
-                    <input class="btn" type="submit" value="Usun" />
+                <input class="delbtn" type="submit" value="X" />
             </form>
         </td>
     </tr>

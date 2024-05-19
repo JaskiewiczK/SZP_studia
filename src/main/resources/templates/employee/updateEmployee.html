@@ -22,8 +22,12 @@
     <p>Pesel: </p><br><input id="pesel" name= "pesel" type="text" th:value="${employee.pesel}" /><br>
     <p>Login: </p><br><input id="login" name= "login" type="text" th:value="${employee.login}" /><br>
     <p><input type="submit" value="Zatwierdź" />
-</section>
 </form>
+    <br>
+    <form th:action="@{http://localhost:8080/employee/}" method="get" >
+        <button id="menuButton" type="submit" class ="btn"> Powrót do menu</button>
+    </form>
+</section>
 </body>
 <footer>
     <div class="container">

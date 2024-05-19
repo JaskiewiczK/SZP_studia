@@ -16,6 +16,7 @@
 <h1>Lista pracowników</h1>
     <br>
     <br>
+    <div class="table-container">
     <table class="employee-table">
         <thead>
         <tr>
@@ -28,7 +29,7 @@
             <th>Pesel</th>
             <th>Login</th>
             <th>Stanowisko</th>
-            <th>Akcja</th>
+            <th>Usuń</th>
         </tr>
         </thead>
         <tbody>
@@ -45,12 +46,13 @@
             <td>
                 <form th:action="@{http://localhost:8080/hr/employees}"  th:object="${idDTO}" method="post">
                     <input type="hidden" name="id" th:value="${employee.employeeId}" />
-                    <input class="btn" type="submit" value="Zwolnij" />
+                    <input class="delbtn" type="submit" value="X" />
                 </form>
             </td>
         </tr>
         </tbody>
     </table>
+    </div>
 <form th:action="@{http://localhost:8080/hr/}" method="get" >
     <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
 </form>
