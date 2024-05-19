@@ -21,12 +21,19 @@
     <tr>
         <th>Stanowisko ID</th>
         <th>Nazwa</th>
+        <th>Akcja</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="workstation : ${workstations}">
         <td th:text="${workstation.id}"></td>
         <td th:text="${workstation.name}"></td>
+        <td>
+            <form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
+                    <input type="hidden" name="id" th:value="${workstation.id}" />
+                    <input class="btn" type="submit" value="Usun" />
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -39,10 +46,7 @@
 
 <br>
 
-<form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
-    <label for="id">ID stanowiska: </label><input id="id" name= "id" type="text"/><br>
-    <p><input type="submit" class ="btn" value="Usun stanowisko" />
-</form>
+
 
 
 

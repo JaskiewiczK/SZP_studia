@@ -33,6 +33,7 @@
         <th>Status</th>
         <th>ID stanowiska</th>
         <th>Nazwa stanowiska</th>
+        <th>Status</th>
     </tr>
     </thead>
     <tbody>
@@ -50,6 +51,25 @@
         <td th:text="${assignment.state}"></td>
         <td th:text="${assignment.workstation.id}"></td>
         <td th:text="${assignment.workstation.name}"></td>
+        <td>
+            <form th:action="@{http://localhost:8080/hr/assignments/status}" th:object="${AssignmentStatusDTO}" method="post">
+                <input type="hidden" name="id" th:value="${assignment.assignmentId}" />
+                <input type="hidden" name="status" th:value="DONE" />
+                <input class="btn" type="submit" value="DONE" />
+            </form>
+
+            <form th:action="@{http://localhost:8080/hr/assignments/status}" th:object="${AssignmentStatusDTO}" method="post">
+                <input type="hidden" name="id" th:value="${assignment.assignmentId}" />
+                <input type="hidden" name="status" th:value="CANCELLED" />
+                <input class="btn" type="submit" value="CANCELLED" />
+            </form>
+
+            <form th:action="@{http://localhost:8080/hr/assignments/status}" th:object="${AssignmentStatusDTO}" method="post">
+                <input type="hidden" name="id" th:value="${assignment.assignmentId}" />
+                <input type="hidden" name="status" th:value="IN_PROGRESS" />
+                <input class="btn" type="submit" value="IN_PROGRESS" />
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -61,11 +81,6 @@
 </form>
 
 <br>
-<form  th:action="@{http://localhost:8080/hr/assignments/status}" th:object="${AssignmentStatusDTO}" method="post">
-    <label for="id">Id: </label><input id="id" name= "id" type="text"/><br>
-    <label for="status">Status: </label><input id="status" name= "status" type="text"/><br>
-    <p><input type="submit" class ="btn" value="Zmień status" />
-</form>
 
 
 <form th:action="@{http://localhost:8080/hr/}" method="get" >
