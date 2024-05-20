@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urlopy</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
+</head>
+<body>
+<header>
+  <div class="container">
+  </div>
+</header>
+<section class="content">
+  <br>
+  <h1>Lista urlopów</h1>
+  <br>
+  <form th:action="@{~/hr/leaves}" method="get">
+    <label for="start-date">Urlopy od: </label>
+    <input id="start-date" name="startDate" type="date" th:value="${startDate}">
+    <label for="end-date">Urlopy do: </label>
+    <input id="end-date" name="endDate" type="date" th:value="${endDate}">
+    <input id="include-all-matching" name="includeAllMatching" type="checkbox" th:checked="${includeAllMatching}">
+    <label for="include-all-matching">Uwzglednij urlopy ktore częsciowo mieszczą się w zakresie dat</label>
+    <button type="submit">Potwierdz</button>
+  </form>
+  <table>
+    <thead>
+    <tr>
+      <td>ID urlopu</td>
+      <td>Imię</td>
+      <td>Nazwisko</td>
+      <td>Rozpoczęcie</td>
+      <td>Zakończenie</td>
+      <td>Typ</td>
+    </tr>
+    </thead>
+    <tbody>
+      <tr th:each="leave : ${vacations}">
+        <td th:text="${leave.vacationId}"/>
+        <td th:text="${leave.employee.firstName}"/>
+        <td th:text="${leave.employee.lastName}"/>
+        <td th:text="${leave.beginning}"/>
+        <td th:text="${leave.ending}"/>
+        <td th:text="${type}"/>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<footer>
+  <div class="container">
+    <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>
+  </div>
+</footer>
+</body>
+</html>

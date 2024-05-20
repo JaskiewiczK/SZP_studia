@@ -1,33 +1,29 @@
 package szp.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import szp.model.*;
 import org.springframework.web.bind.annotation.*;
-import szp.repository.AssignmentRepository;
-import szp.repository.ClientRepository;
-import szp.repository.EmployeeRepository;
-import szp.repository.WorkstationRepository;
+import szp.repository.*;
 import szp.service.EmployeeService;
+import szp.service.VacationService;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @AllArgsConstructor
 @RequestMapping("/hr")
-public class HRController{
+public class HRController {
     private final EmployeeService employeeService;
-
     private final EmployeeRepository employeeRepository;
     private final WorkstationRepository workstationRepository;
-
     private final AssignmentRepository assignmentRepository;
-
     private final ClientRepository clientRepository;
+    private final VacationService vacationService;
 
     @GetMapping("/")
     public String getHomePage(Model model) {
@@ -36,11 +32,8 @@ public class HRController{
 
     @GetMapping("/employees")
     public String getEmployeesInfo(Model model) {
-
         List<EmployeeModel> employees = employeeService.getAllEmployees();
-
         model.addAttribute("employees", employees);
-
         return "hr/employees";
     }
 
@@ -49,6 +42,21 @@ public class HRController{
         employeeRepository.deleteById(idDTO.getId());
         return "redirect:/hr/employees";
     }
+
+    @GetMapping("/leaves")
+    public String employeeLeavesPage(Model model,
+                                     @RequestParam(value = "startDate") Optional<LocalDate> startDate,
+                                     @RequestParam(value = "endDate") Optional<LocalDate> endDate,
+                                     @RequestParam(value = "includeAllMatching", defaultValue = "false") boolean includeAllMatchning) {
+        startDate.ifPresent(from -> model.addAttribute("startDate", from));
+        endDate.ifPresent(to -> model.addAttribute("endDate", to));
+        model.addAttribute("includeAllMatching", includeAllMatchning);
+        List<VacationModel> vacations = vacationService.getAllVacationsInRange(startDate.orElse(LocalDate.now().minusYears(10)),
+                endDate.orElse(LocalDate.now().plusYears(10)), includeAllMatchning);
+        model.addAttribute("vacations", vacations);
+        return "hr/leaves";
+    }
+
 
     @GetMapping("/workstations")
     public String getAllWorkstations(Model model){
@@ -141,5 +149,4 @@ public class HRController{
         clientRepository.deleteById(idDTO.getId());
         return "redirect:/hr/customers";
     }
-
 }
