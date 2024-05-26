@@ -47,4 +47,8 @@ public class RefreshTokenService {
             refreshTokenRepository.deleteByEmployeeModel_Login(username);
         }
     }
+
+    public void setRefreshTokenExpiry(int refreshTokenExpiry) {
+        this.refreshTokenExpiry = refreshTokenExpiry;
+    }
 }
