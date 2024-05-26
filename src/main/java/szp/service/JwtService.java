@@ -19,6 +19,10 @@ import java.util.stream.Stream;
 @Service
 @Component
 public class JwtService {
+    public void setAccessTokenExpiry(int accessTokenExpiry) {
+        this.accessTokenExpiry = accessTokenExpiry;
+    }
+
     public enum TokenType {
         ACCESS_TOKEN("accessToken"),
         REFRESH_TOKEN("refreshToken");
@@ -59,7 +63,7 @@ public class JwtService {
                 .getPayload();
     }
 
-    private boolean isTokenExpired(String token) {
+    boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
@@ -77,7 +81,7 @@ public class JwtService {
 
 
 
-    private String createToken(Map<String, Object> claims, String username) {
+    String createToken(Map<String, Object> claims, String username) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + accessTokenExpiry * 1000L);
         return Jwts.builder()
@@ -88,7 +92,7 @@ public class JwtService {
                 .signWith(getSignKey()).compact();
     }
 
-    private SecretKey getSignKey() {
+    SecretKey getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET);
         return Keys.hmacShaKeyFor(keyBytes);
     }
