@@ -5,6 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lista klientów</title>
   <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
+  <style>
+    /* Modal styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+      font-family:Trebuchet MS;
+    }
+
+    .modal-content {
+      background-color: rgb(240, 240, 240);
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 300px;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+      font-family:Trebuchet MS;
+    }
+
+    .modal-buttons button {
+      padding: 10px 20px;
+      cursor: pointer;
+
+    }
+
+    .modal-buttons .cancel-btn {
+      background-color: #f44336;
+      color: white;
+      border-radius:39px;
+	  border:2px solid  #d32f2f;
+    }
+
+    .modal-buttons .confirm-btn {
+      background-color: #4CAF50;
+      color: white;
+      border-radius:39px;
+	  border:2px solid  #388E3C;
+    }
+  </style>
+  <script>
+    function confirmDeletion(event, form) {
+      event.preventDefault();
+      const modal = document.getElementById('deleteModal');
+      const confirmBtn = document.getElementById('confirmDelete');
+      const cancelBtn = document.getElementById('cancelDelete');
+
+      modal.style.display = 'block';
+
+      confirmBtn.onclick = function() {
+        form.submit();
+      };
+
+      cancelBtn.onclick = function() {
+        modal.style.display = 'none';
+      };
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      };
+    }
+  </script>
 </head>
 <body>
 <header>
@@ -13,55 +90,64 @@
 </header>
 <section class="content">
   <br>
-<h1>Lista klientów</h1>
+  <h1>Lista klientów</h1>
   <br>
   <br>
   <div class="table-container">
-<table class="employee-table">
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>Imię</th>
-    <th>Drugie imię</th>
-    <th>Nazwisko</th>
-    <th>Email</th>
-    <th>Nr telefonu</th>
-    <th>Nr konta bankowego</th>
-    <th>Usuń</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="client : ${clients}">
-    <td th:text="${client.clientId}"></td>
-    <td th:text="${client.firstName}"></td>
-    <td th:text="${client.secondName}"></td>
-    <td th:text="${client.lastName}"></td>
-    <td th:text="${client.email}"></td>
-    <td th:text="${client.phoneNumber}"></td>
-    <td th:text="${client.bankAccount}"></td>
-    <td>
-        <form th:action="@{http://localhost:8080/hr/customers/remove}" th:object="${idDTO}" method="post">
+    <table class="employee-table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Imię</th>
+        <th>Drugie imię</th>
+        <th>Nazwisko</th>
+        <th>Email</th>
+        <th>Nr telefonu</th>
+        <th>Nr konta bankowego</th>
+        <th>Usuń</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="client : ${clients}">
+        <td th:text="${client.clientId}"></td>
+        <td th:text="${client.firstName}"></td>
+        <td th:text="${client.secondName}"></td>
+        <td th:text="${client.lastName}"></td>
+        <td th:text="${client.email}"></td>
+        <td th:text="${client.phoneNumber}"></td>
+        <td th:text="${client.bankAccount}"></td>
+        <td>
+          <form th:action="@{http://localhost:8080/hr/customers/remove}" th:object="${idDTO}" method="post" onsubmit="confirmDeletion(event, this)">
             <input type="hidden" name="id" th:value="${client.clientId}" />
-          <input class="delbtn" type="submit" value="X" />
-        </form>
-    </td>
-  </tr>
-  </tbody>
-</table>
+            <input class="delbtn" type="submit" value="X" />
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-<br>
+  <br>
 
-<form th:action="@{http://localhost:8080/hr/customers/add}" method="get" >
-  <button id="addClientButton" type="submit" class ="btn"> Dodaj klienta</button>
-</form>
+  <form th:action="@{http://localhost:8080/hr/customers/add}" method="get" >
+    <button id="addClientButton" type="submit" class ="btn"> Dodaj klienta</button>
+  </form>
 
-
-
-
-<form th:action="@{http://localhost:8080/hr/}" method="get" >
-  <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
-</form>
+  <form th:action="@{http://localhost:8080/hr/}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
+  </form>
 </section>
+
+
+<div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <p>Czy na pewno chcesz usunąć?</p>
+    <div class="modal-buttons">
+      <button id="confirmDelete" class="confirm-btn">Tak</button>
+      <button id="cancelDelete" class="cancel-btn">Nie</button>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="container">
     <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>

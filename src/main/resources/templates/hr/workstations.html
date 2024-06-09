@@ -5,6 +5,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista stanowisk</title>
     <link rel="stylesheet" type="text/css" th:href="@{/styles/hr.css}"/>
+    <style>
+        /* Modal styling */
+        .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.4);
+          font-family:Trebuchet MS;
+        }
+
+        .modal-content {
+          background-color: rgb(240, 240, 240);
+          margin: 15% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          width: 80%;
+          max-width: 300px;
+          text-align: center;
+          border-radius: 10px;
+        }
+
+        .modal-buttons {
+          display: flex;
+          justify-content: space-around;
+          margin-top: 20px;
+          font-family:Trebuchet MS;
+        }
+
+        .modal-buttons button {
+          padding: 10px 20px;
+          cursor: pointer;
+
+        }
+
+        .modal-buttons .cancel-btn {
+          background-color: #f44336;
+          color: white;
+          border-radius:39px;
+          border:2px solid  #d32f2f;
+        }
+
+        .modal-buttons .confirm-btn {
+          background-color: #4CAF50;
+          color: white;
+          border-radius:39px;
+          border:2px solid  #388E3C;
+        }
+    </style>
+    <script>
+        function confirmDeletion(event, form) {
+          event.preventDefault();
+          const modal = document.getElementById('deleteModal');
+          const confirmBtn = document.getElementById('confirmDelete');
+          const cancelBtn = document.getElementById('cancelDelete');
+
+          modal.style.display = 'block';
+
+          confirmBtn.onclick = function() {
+            form.submit();
+          };
+
+          cancelBtn.onclick = function() {
+            modal.style.display = 'none';
+          };
+
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = 'none';
+            }
+          };
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -29,7 +106,7 @@
         <td th:text="${workstation.id}"></td>
         <td th:text="${workstation.name}"></td>
         <td>
-            <form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post">
+            <form  th:action="@{http://localhost:8080/hr/workstations/delete}" th:object="${idDTO}" method="post" onsubmit="confirmDeletion(event, this)">
                     <input type="hidden" name="id" th:value="${workstation.id}" />
                 <input class="delbtn" type="submit" value="X" />
             </form>
@@ -54,6 +131,15 @@
     <button id="vacationButton" type="submit" class ="btn"> Powrot do menu</button>
 </form>
 </section>
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <p>Czy na pewno chcesz usunąć?</p>
+        <div class="modal-buttons">
+            <button id="confirmDelete" class="confirm-btn">Tak</button>
+            <button id="cancelDelete" class="cancel-btn">Nie</button>
+        </div>
+    </div>
+</div>
 <footer>
     <div class="container">
         <p><a th:href="@{~/auth/logout}" class="btn">Wyloguj</a></p>

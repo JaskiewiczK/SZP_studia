@@ -16,22 +16,24 @@
   <h1>Lista urlopów</h1>
   <br>
   <form th:action="@{~/hr/leaves}" method="get">
-    <label for="start-date">Urlopy od: </label>
-    <input id="start-date" name="startDate" type="date" th:value="${startDate}">
-    <label for="end-date">Urlopy do: </label>
-    <input id="end-date" name="endDate" type="date" th:value="${endDate}">
+    <p>Urlopy od:</p><input id="start-date" name="startDate" type="date" th:value="${startDate}">
+    <p>Urlopy do:</p><input id="end-date" name="endDate" type="date" th:value="${endDate}">
+    <br>
+    <br>
     <input id="include-all-matching" name="includeAllMatching" type="checkbox" th:checked="${includeAllMatching}">
-    <label for="include-all-matching">Uwzglednij urlopy ktore częsciowo mieszczą się w zakresie dat</label>
-    <button type="submit">Potwierdz</button>
+    <label for="include-all-matching">Uwzglednij urlopy które częsciowo mieszczą się w zakresie dat</label>
+    <br>
+    <button type="submit" class ="btn">Filtruj</button>
   </form>
-  <table>
+  <div class="table-container">
+    <table class="employee-table">
     <thead>
     <tr>
       <td>ID urlopu</td>
       <td>Imię</td>
       <td>Nazwisko</td>
-      <td>Rozpoczęcie</td>
-      <td>Zakończenie</td>
+      <td>Początek</td>
+      <td>Koniec</td>
       <td>Typ</td>
     </tr>
     </thead>
@@ -45,7 +47,12 @@
         <td th:text="${type}"/>
       </tr>
     </tbody>
-  </table>
+    </table>
+  </div>
+  <br>
+  <form th:action="@{http://localhost:8080/hr/}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrót do menu</button>
+  </form>
 </section>
 <footer>
   <div class="container">

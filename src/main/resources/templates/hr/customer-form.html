@@ -25,6 +25,9 @@
   <p>Nr konta bankowego: </p><input id="bankAccount" name="bankAccount" type="text"/><br>
   <p><input type="submit" class ="btn" value="Dodaj klienta" /></p>
 </form>
+  <form th:action="@{http://localhost:8080/hr/customers}" method="get" >
+    <button id="vacationButton" type="submit" class ="btn"> Powrót</button>
+  </form>
 </section>
 <footer>
   <div class="container">

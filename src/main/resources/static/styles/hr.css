@@ -356,3 +356,32 @@ input[type="date"]
 .delbtn:hover {
     background-color:#787778;
 }
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+input[type="checkbox"]:hover {
+    border-color: #888;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #949494;
+    border-color: #949494;
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2713';
+    display: block;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+}
