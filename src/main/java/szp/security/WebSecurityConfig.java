@@ -16,13 +16,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+/**
+ * This is the WebSecurityConfig class that handles the security configuration of the application.
+ * It is annotated with @EnableWebSecurity and @Configuration, indicating that it is a configuration class for Spring Security.
+ * @RequiredArgsConstructor is a Lombok annotation to generate a constructor with required fields (final fields and fields with @NonNull annotation).
+ */
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor
 public class WebSecurityConfig {
+    /**
+     * This is the service for loading user-specific data.
+     */
     private final UserDetailsService userDetailsService;
+
+    /**
+     * This is the filter for JWT authentication.
+     */
     private final JwtAuthFilter jwtAuthFilter;
 
+    /**
+     * This method provides the authentication provider for the application.
+     * @return DaoAuthenticationProvider object that handles the authentication.
+     */
     @Bean
     public DaoAuthenticationProvider authProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -31,6 +47,12 @@ public class WebSecurityConfig {
         return authProvider;
     }
 
+    /**
+     * This method provides the security filter chain for the application.
+     * @param http HttpSecurity object to build the security configuration.
+     * @return SecurityFilterChain object that contains the security filters.
+     * @throws Exception if an error occurs during the configuration.
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.csrf(AbstractHttpConfigurer::disable)
@@ -49,12 +71,21 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-
+    /**
+     * This method provides the password encoder for the application.
+     * @return PasswordEncoder object that handles the password encoding.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * This method provides the authentication manager for the application.
+     * @param config AuthenticationConfiguration object to get the authentication manager.
+     * @return AuthenticationManager object that handles the authentication.
+     * @throws Exception if an error occurs during the configuration.
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
